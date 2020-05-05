@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_firebase_flutter_2/src/bloc/authentication_bloc/bloc.dart';
 import 'package:flutter_firebase_flutter_2/src/repository/user_repository.dart';
@@ -33,10 +35,14 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       final isSignedIn = await _userRepository.isSignedIn();
       if (isSignedIn) {
         final user = await _userRepository.getUser();
-        yield Authenticated(user);
+        yield await Future.delayed(Duration(seconds: 5), (){
+          return Authenticated(user);
+        });
       }
       else {
-        yield Unauthenticated();
+        yield await Future.delayed(Duration(seconds: 5), (){
+          return Unauthenticated();
+        });
       }
     } catch (_) {
       yield Unauthenticated();

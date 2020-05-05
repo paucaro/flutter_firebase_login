@@ -12,7 +12,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_auth: 
   google_sign_in: 
-  flutter_bloc: 
+  flutter_bloc: ^4.0.0
   equatable:
   meta:
   rxdart:
